@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Void Hub Key</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 10%, #282050 0%, transparent 38%),
+        radial-gradient(circle at 10% 90%, #11152d 0%, transparent 35%),
+        #040407;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+/* =========================
+   BACKGROUND EFFECTS
+========================= */
+
+.bg-orb {
+    position: fixed;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: .15;
+    pointer-events: none;
+}
+
+.orb-1 {
+    background: #8b5cf6;
+    top: -150px;
+    left: -100px;
+    animation: orbMove1 8s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    background: #3b82f6;
+    right: -150px;
+    bottom: -130px;
+    animation: orbMove2 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbMove1 {
+    from { transform: translate(0,0); }
+    to { transform: translate(130px,100px); }
+}
+
+@keyframes orbMove2 {
+    from { transform: translate(0,0); }
+    to { transform: translate(-110px,-90px); }
+}
+
+/* Floating particles */
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 10px #8b5cf6;
+    opacity: .5;
+    animation: particleFloat linear infinite;
+}
+
+.p1 { left: 8%; top: 75%; animation-duration: 7s; }
+.p2 { left: 18%; top: 25%; animation-duration: 9s; }
+.p3 { left: 35%; top: 85%; animation-duration: 8s; }
+.p4 { left: 72%; top: 20%; animation-duration: 10s; }
+.p5 { left: 88%; top: 70%; animation-duration: 7s; }
+.p6 { left: 60%; top: 88%; animation-duration: 11s; }
+.p7 { left: 45%; top: 15%; animation-duration: 8s; }
+.p8 { left: 93%; top: 35%; animation-duration: 9s; }
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    20% {
+        opacity: .6;
+    }
+    80% {
+        opacity: .5;
+    }
+    100% {
+        transform: translateY(-180px);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.card {
+    position: relative;
+    width: min(92%, 530px);
+    padding: 45px 32px 32px;
+    border-radius: 30px;
+
+    background: rgba(12,12,20,.79);
+    border: 1px solid rgba(167,139,250,.24);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.6),
+        0 0 60px rgba(124,58,237,.13),
+        inset 0 1px 0 rgba(255,255,255,.06);
+
+    animation: cardAppear .8s cubic-bezier(.2,.8,.2,1);
+    z-index: 5;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #8b5cf6,
+        #60a5fa,
+        transparent
+    );
+
+    box-shadow: 0 0 18px #8b5cf6;
+}
+
+/* =========================
+   PREMIUM V LOGO
+========================= */
+
+.logo-wrap {
+    position: relative;
+
+    width: 118px;
+    height: 118px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    isolation: isolate;
+}
+
+/* Outer rotating ring */
+.logo-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border-radius: 34px;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            #8b5cf6 70deg,
+            #60a5fa 125deg,
+            transparent 190deg,
+            transparent 270deg,
+            #7c3aed 330deg,
+            transparent 360deg
+        );
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    padding: 2px;
+
+    animation: rotateRing 5s linear infinite;
+}
+
+/* Second ring */
+.logo-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+
+    border-radius: 28px;
+    border: 1px solid rgba(167,139,250,.22);
+
+    box-shadow:
+        0 0 25px rgba(139,92,246,.15),
+        inset 0 0 20px rgba(139,92,246,.08);
+
+    animation: ringPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes rotateRing {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ringPulse {
+    0%,100% {
+        transform: scale(1);
+        opacity: .45;
+    }
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+/* Logo center */
+.logo {
+    position: relative;
+
+    width: 88px;
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 27px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #292044,
+            #0b0a11 72%
+        );
+
+    border: 1px solid rgba(196,181,253,.28);
+
+    box-shadow:
+        0 0 30px rgba(124,58,237,.38),
+        inset 0 0 28px rgba(139,92,246,.1);
+
+    animation: logoFloat 4s ease-in-out infinite;
+
+    z-index: 3;
+}
+
+/* V itself */
+.logo span {
+    position: relative;
+
+    display: block;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 53px;
+    font-weight: 900;
+    line-height: 1;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 5%,
+            #ddd6fe 38%,
+            #a78bfa 68%,
+            #6366f1 100%
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,255,255,.35))
+        drop-shadow(0 0 18px rgba(139,92,246,.75));
+
+    transform: translateX(1px);
+}
+
+/* Small energy dot */
+.logo span::after {
+    content: "";
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    right: -8px;
+    top: 4px;
+
+    background: #c4b5fd;
+
+    box-shadow:
+        0 0 8px #a78bfa,
+        0 0 18px #8b5cf6;
+
+    animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes dotPulse {
+    0%,100% {
+        transform: scale(.7);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    text-align: center;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(30px, 8vw, 46px);
+    font-weight: 900;
+
+    letter-spacing: 2px;
+    line-height: 1.1;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ddd6fe,
+            #a78bfa,
+            #60a5fa
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 0 16px rgba(139,92,246,.22));
+}
+
+.subtitle {
+    text-align: center;
+
+    margin-top: 11px;
+    margin-bottom: 30px;
+
+    color: #858394;
+
+    font-size: 13px;
+    letter-spacing: 1.5px;
+}
+
+/* =========================
+   KEY
+========================= */
+
+.key-section {
+    position: relative;
+
+    padding: 21px;
+
+    border-radius: 19px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid rgba(167,139,250,.22);
+
+    box-shadow:
+        inset 0 0 30px rgba(124,58,237,.045);
+
+    overflow: hidden;
+}
+
+.key-section::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    animation: scan 4s infinite;
+}
+
+@keyframes scan {
+    0% { left: -120%; }
+    55%,100% { left: 140%; }
+}
+
+.key-label {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 10px;
+
+    color: #8b5cf6;
+
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.key {
+    position: relative;
+    z-index: 2;
+
+    color: #f1efff;
+
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.65;
+
+    word-break: break-all;
+
+    text-shadow: 0 0 12px rgba(167,139,250,.15);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.copy-btn {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 17px;
+    padding: 17px;
+
+    border: 0;
+    border-radius: 17px;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #5b21b6
+        );
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    box-shadow:
+        0 12px 30px rgba(124,58,237,.25),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+    transition: .25s ease;
+
+    overflow: hidden;
+}
+
+.copy-btn::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.22),
+            transparent
+        );
+
+    transition: .6s;
+}
+
+.copy-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 17px 40px rgba(124,58,237,.42),
+        0 0 25px rgba(124,58,237,.18);
+}
+
+.copy-btn:hover::before {
+    left: 130%;
+}
+
+.copy-btn:active {
+    transform: scale(.97);
+}
+
+.status {
+    height: 18px;
+
+    margin-top: 13px;
+
+    text-align: center;
+
+    color: #a78bfa;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #555463;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<div class="particles">
+    <span class="particle p1"></span>
+    <span class="particle p2"></span>
+    <span class="particle p3"></span>
+    <span class="particle p4"></span>
+    <span class="particle p5"></span>
+    <span class="particle p6"></span>
+    <span class="particle p7"></span>
+    <span class="particle p8"></span>
+</div>
+
+<!-- Main -->
+<div class="card">
+
+    <!-- Centered premium V logo -->
+    <div class="logo-wrap">
+        <div class="logo">
+            <span>V</span>
+        </div>
+    </div>
+
+    <h1 class="title">Void Hub Key</h1>
+
+    <div class="subtitle">
+        PREMIUM ACCESS • KEY SYSTEM
+    </div>
+
+    <div class="key-section">
+        <div class="key-label">YOUR ACCESS KEY</div>
+
+        <div class="key" id="key">
+            VoidHubKeyHsowjd - Gdowoh92736jsiwisHeieijdkek
+        </div>
+    </div>
+
+    <button class="copy-btn" id="copyBtn" onclick="copyKey()">
+        COPY KEY
+    </button>
+
+    <div class="status" id="status"></div>
+
+    <div class="footer">
+        VOID HUB • PREMIUM KEY SYSTEM
+    </div>
+
+</div>
+
+<script>
+function copyKey() {
+
+    const key = document.getElementById("key").innerText.trim();
+    const button = document.getElementById("copyBtn");
+    const status = document.getElementById("status");
+
+    navigator.clipboard.writeText(key).then(() => {
+
+        button.innerHTML = "✓ KEY COPIED";
+        status.innerHTML = "Your key has been copied successfully.";
+
+        setTimeout(() => {
+            button.innerHTML = "COPY KEY";
+            status.innerHTML = "";
+        }, 2000);
+
+    }).catch(() => {
+
+        status.innerHTML = "Copy failed. Please copy the key manually.";
+
+    });
+}
+</script>
+
+</body>
+</html>
